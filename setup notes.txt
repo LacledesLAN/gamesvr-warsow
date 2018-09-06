@@ -1,0 +1,33 @@
+
+FROM debian:stable-slim
+
+ARG BUILDNODE=unspecified
+ARG SOURCE_COMMIT=unspecified
+ARG contentServer=content.lacledeslan.net
+
+# Install dependencies
+RUN apt-get update &&`
+    apt-get install -y `
+        bzip2 ca-certificates curl lib32gcc1 p7zip-full tar unzip wget &&`
+    apt-get clean &&`
+rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*;
+
+RUN echo $'\n\nDownloading LL custom content from content server' &&`
+        mkdir --parents /tmp/maps/ &&`
+        cd /tmp/maps/ &&`
+        wget -rkpN -l 1 -nH  --no-verbose --cut-dirs=3 -R "*.htm*" -e robots=off "http://"$contentServer"/fastDownloads/warsow/" &&`
+    echo "Moving files to destination" &&`
+        mkdir /output/maps --parents &&`
+mv -n *.bsp /app/warsow-2.1.2;
+
+
+# Add in tests
+COPY /ll-tests /app/ll-tests
+
+mkdir /app
+cd /app
+wget http://sebastian.network/warsow/warsow-2.1.2.tar.gz
+tar -zxvf warsow-2.1.2.tar.gz
+
+weget https://github.com/LacledesLAN/gamesvr-warsow/archive/master.zip
+unzip master.zip -d /app/warsow-2.1.2
