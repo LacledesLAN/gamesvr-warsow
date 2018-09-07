@@ -12,22 +12,24 @@ RUN apt-get update &&`
     apt-get clean &&`
 rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*;
 
-RUN echo $'\n\nDownloading LL custom content from content server' &&`
-        mkdir --parents /tmp/maps/ &&`
-        cd /tmp/maps/ &&`
-        wget -rkpN -l 1 -nH  --no-verbose --cut-dirs=3 -R "*.htm*" -e robots=off "http://"$contentServer"/fastDownloads/warsow/" &&`
-    echo "Moving files to destination" &&`
-        mkdir /output/maps --parents &&`
-mv -n *.bsp /app/warsow-2.1.2;
-
-
-# Add in tests
-COPY /ll-tests /app/ll-tests
+RUN echo $'\n\nGettinhg base game' &&`
 
 mkdir /app
 cd /app
 wget http://sebastian.network/warsow/warsow-2.1.2.tar.gz
 tar -zxvf warsow-2.1.2.tar.gz
 
+cd/app/warsow-2.1.2/ 
+
+RUN echo $'\n\nDownloading LL custom content from content server' &&`
+       wget wget -rkpN -nH --cut-dirs=2 -e robots=off --no-parent --reject "index.html*" http://content.lacledeslan.net/fastDownloads/warsow/ /app/warsow-2.1.2 &&`
+
+cd /
+
+
+# Add in tests
+COPY /ll-tests /app/ll-tests
+
+RUN echo $'\n\nGetting LL config' &&`
 weget https://github.com/LacledesLAN/gamesvr-warsow/archive/master.zip
 unzip master.zip -d /app/warsow-2.1.2
