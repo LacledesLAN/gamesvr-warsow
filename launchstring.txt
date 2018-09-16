@@ -1,1 +1,0 @@
-./app/warsow-2.1.2/wsw_server +exec server.cfg +set dedicated 2 +sv_lan 1
