@@ -6,6 +6,26 @@ Since 2005, Warsow is considered as one of the most skill-demanding games in the
 
 This repository is maintained by [Laclede's LAN](https://lacledeslan.com). Its contents are intended to be bare-bones and used as a stock server. For examples of building a customized server from this Docker image browse its related child-project [gamesvr-warsow-freeplay](https://github.com/LacledesLAN/gamesvr-warsow-freeplay). If any documentation is unclear or it has any issues please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+## Linux
+
+### Download
+
+```shell
+docker pull lacledeslan/gamesvr-warsow;
+```
+
+### Run Self Tests
+
+```shell
+docker run -it --rm lacledeslan/gamesvr-warsow ./ll-tests/gamesvr-warsow.sh;
+```
+
+### Run Interactive Server
+
+```shell
+docker run -it --rm lacledeslan/gamesvr-warsow ./wsw_server +exec server.cfg +set dedicated 2 +sv_lan 1
+```
+
 ## Getting Started with Game Servers in Docker
 
 [Docker](https://docs.docker.com/) is an open-source project that bundles applications into lightweight, portable, self-sufficient containers. For a crash course on running Dockerized game servers check out [Using Docker for Game Servers](https://github.com/LacledesLAN/README.1ST/blob/master/GameServers/DockerAndGameServers.md). For tips, tricks, and recommended tools for working with Laclede's LAN Dockerized game server repos see the guide for [Working with our Game Server Repos](https://github.com/LacledesLAN/README.1ST/blob/master/GameServers/WorkingWithOurRepos.md). You can also browse all of our other Dockerized game servers: [Laclede's LAN Game Servers Directory](https://github.com/LacledesLAN/README.1ST/tree/master/GameServers).
