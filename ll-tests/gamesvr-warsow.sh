@@ -3,7 +3,7 @@
 
 #####################################################################################################
 ### CONFIG VARS #####################################################################################
-declare LLTEST_CMD="./wsw_server +exec server.cfg +set dedicated 2 +sv_lan 1";
+declare LLTEST_CMD="/app/wsw_server +exec server.cfg +set dedicated 2 +sv_lan 1";
 declare LLTEST_NAME="gamesvr-warsow-$(date '+%H%M%S')";
 #####################################################################################################
 #####################################################################################################
@@ -146,7 +146,7 @@ fi;
 
 #####################################################################################################
 ### TESTS ###########################################################################################
-# Stock warsow server tests 
+# Stock warsow server tests
 should_have '====== Warsow Initialized ======' 'Warsow is initialized'
 
 should_have 'Executing: dedicated_autoexec.cfg' 'Default server config executed'
@@ -156,7 +156,7 @@ should_have 'Loaded libz.so.1' 'Loaded libz.so.1 dependancy is loaded'
 should_have 'Opening TCP/IP socket: *:44444' 'Network TCP Socket is open'
 should_have 'Opening UDP/IP socket: *:44400' 'Network UDP Socket is open'
 should_have 'Opening UDP/IPv6 socket: *:44400 ' Network IPv6 Socket is open'
-should_have 'Added pk3 file ./basewsw/map_wdm1.pk3 (2 files)' 'stock map is loaded'
+should_have 'Added pk3 file ./basewsw/map_wdm1.pk3' 'stock map is loaded'
 should_have '------- Server Initialization -------' 'server initialzed'
 should_lack 'Couldn't execute: ' 'bad server file'
 should_lack '==== G_Shutdown ====' 'server shutdown'
@@ -186,5 +186,3 @@ fi;
 
 echo $'All checks passed!\n\n';
 exit 0;
-
-
