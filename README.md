@@ -16,6 +16,8 @@ docker pull lacledeslan/gamesvr-warsow;
 
 ### Run Self Tests
 
+The image includes a test script that can be used to verify its contents. No changes or pull-requests will be accepted to this repository if any tests fail.
+
 ```shell
 docker run -it --rm lacledeslan/gamesvr-warsow ./ll-tests/gamesvr-warsow.sh;
 ```
