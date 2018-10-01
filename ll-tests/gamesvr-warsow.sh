@@ -150,14 +150,14 @@ fi;
 should_have '====== Warsow Initialized ======' 'Warsow is initialized'
 
 should_have 'Executing: dedicated_autoexec.cfg' 'Default server config executed'
-should_have 'Executing: default.cfg' 'default.cf ran'
+should_have 'Executing: default.cfg' 'Default.cfg file  ran'
 should_have 'Loaded libz.so.1' 'Loaded libz.so.1 dependancy is loaded'
-should_have 'Added pk3 file /app/basewsw/map_wdm1.pk3' 'stock map is present'
-shoud_lack  "Couldn't find map:" "bad map file name"
-should_have 'Server Initialization' 'server initialzed'
-should_lack '==== G_Shutdown ====' 'server shutdown'
-should_lack 'G_Gametype: Wrong value:' 'bad gametype'
-should_have "dm.cfg executed" "excuted gametype config"
+should_have 'Added pk3 file /app/basewsw/map_wdm1.pk3' 'Stock map is present'
+shoud_lack  "Couldn't find map:" "Bad map file name"
+should_have 'Server Initialization' 'Server initialzed'
+should_lack '==== G_Shutdown ====' 'Server did not shutdown'
+should_lack 'G_Gametype: Wrong value:' 'Bad gametype selected'
+should_have "dm.cfg executed" "Gametype config executed"
 should_have "Gametype 'Deathmatch' initialized" "Gametype initialized"
 
 # Verify server responds to commands
