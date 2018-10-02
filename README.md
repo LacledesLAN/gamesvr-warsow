@@ -8,6 +8,10 @@ This repository is maintained by [Laclede's LAN](https://lacledeslan.com). Its c
 
 ## Linux
 
+[![Build Status](https://travis-ci.org/LacledesLAN/gamesvr-warsow.svg?branch=master)](https://travis-ci.org/LacledesLAN/gamesvr-warsow)
+[![](https://images.microbadger.com/badges/version/lacledeslan/gamesvr-warsow.svg)](https://microbadger.com/images/lacledeslan/gamesvr-warsow "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/lacledeslan/gamesvr-warsow.svg)](https://microbadger.com/images/lacledeslan/gamesvr-warsow "Get your own image badge on microbadger.com")
+
 ### Download
 
 ```shell
