@@ -6,9 +6,21 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "docker pull lacledeslan/steamcmd:linux; docker pull debian:stable-slim; docker build . -t lltest/gamesvr-warsow --no-cache --build-arg BUILDNODE=$env:computername;",
+            "command": "docker pull lacledeslan/steamcmd:linux; docker pull debian:stable-slim; docker build ./linux -t lltest/gamesvr-warsow --no-cache --build-arg BUILDNODE=$env:computername;",
             "group": "build",
             "identifier": "build-image",
+            "problemMatcher": [],
+            "promptOnClose": true
+        },
+        {
+            "label": "Build & Execute Self Tests",
+            "type": "shell",
+            "command": "docker run -it --rm lltest/gamesvr-warsow ./ll-tests/gamesvr-warsow.sh;",
+            "dependsOn": "build-image",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": [],
             "promptOnClose": true
         },
