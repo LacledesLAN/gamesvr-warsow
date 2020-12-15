@@ -6,9 +6,8 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "docker pull lacledeslan/steamcmd:linux; docker pull debian:stable-slim; docker build ./linux -t lltest/gamesvr-warsow --no-cache --build-arg BUILDNODE=$env:computername;",
+            "command": "docker pull lacledeslan/steamcmd:linux; docker pull debian:stable-slim; docker build -f ./linux.Dockerfile -t lltest/gamesvr-warsow --no-cache --build-arg BUILDNODE=$env:computername .;",
             "group": "build",
-            "identifier": "build-image",
             "problemMatcher": [],
             "promptOnClose": true
         },
@@ -16,7 +15,7 @@
             "label": "Build & Execute Self Tests",
             "type": "shell",
             "command": "docker run -it --rm lltest/gamesvr-warsow ./ll-tests/gamesvr-warsow.sh;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -28,19 +27,10 @@
             "label": "Build & Shell In",
             "type": "shell",
             "command": "docker run -it --net=host --rm lltest/gamesvr-warsow;",
-            "dependsOn": "build-image",
+            "dependsOn": "Build",
             "group": "build",
             "problemMatcher": [],
             "promptOnClose": true
-        },
-        {
-            "label": "Build & Run Interactive Server",
-            "type": "shell",
-            "command": "docker run -it --rm --net=host lltest/gamesvr-warsow ./wsw_server +exec server.cfg +set dedicated 2 +sv_lan 1",
-            "dependsOn": "build-image",
-            "group": "build",
-            "problemMatcher": [],
-            "promptOnClose": true
-        },
+        }
     ]
 }
