@@ -17,7 +17,7 @@ RUN echo "Downloading Warsow dedicated server from install from content server" 
         wget -rkpN -nH -q --cut-dirs=2 -e robots=off --no-parent --reject "index.html*" -P /output $CONTENT_SERVER"/fastDownloads/warsow/";
 
 #=======================================================================
-FROM $CONTAINER_REGISTRY/debian:stable-slim
+FROM $CONTAINER_REGISTRY/debian:bullseye-slim
 
 ARG BUILDNODE="unspecified"
 ARG SOURCE_COMMIT
@@ -26,7 +26,7 @@ HEALTHCHECK NONE
 
 RUN dpkg --add-architecture i386 &&`
     apt-get update && apt-get install -y `
-        ca-certificates lib32gcc1 locales locales-all tmux &&`
+        ca-certificates lib32gcc-s1 locales locales-all tmux &&`
         apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* &&`
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment &&`
     useradd --home /app --gid root --system Warsow
