@@ -19,8 +19,8 @@ RUN echo "Downloading Warsow dedicated server from install from content server" 
 #=======================================================================
 FROM $CONTAINER_REGISTRY/debian:bullseye-slim
 
-ARG BUILDNODE="unspecified"
-ARG SOURCE_COMMIT
+ARG BUILD_NODE=unspecified
+ARG GIT_REVISION=unspecified
 
 HEALTHCHECK NONE
 
@@ -33,12 +33,13 @@ RUN dpkg --add-architecture i386 &&`
 
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-LABEL com.lacledeslan.build-node $BUILDNODE `
-        org.opencontainers.image.source https://github.com/LacledesLAN/gamesvr-warsow `
-        org.opencontainers.image.title "Laclede's LAN Warsow Dedicated Server" `
-        org.opencontainers.image.url https://github.com/LacledesLAN/README.1ST `
-        org.opencontainers.image.vendor "Laclede's LAN <contact @lacledeslan.com>" `
-        org.opencontainers.image.version $SOURCE_COMMIT
+LABEL architecture="amd64" `
+    com.lacledeslan.build-node=$BUILD_NODE `
+    maintainer="Laclede's LAN <contact@lacledeslan.com>" `
+    org.opencontainers.image.description="Laclede's LAN Warsow Dedicated Server" `
+    org.opencontainers.image.revision=$GIT_REVISION `
+    org.opencontainers.image.source="https://github.com/LacledesLAN/gamesvr-warsow" `
+    org.opencontainers.image.vendor="Laclede's LAN"
 
 COPY --chown=Warsow:root --from=warsow-builder /output /app
 
